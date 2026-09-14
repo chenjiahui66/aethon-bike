@@ -1,0 +1,53 @@
+.preload {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--ink-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 700ms var(--ease-cinematic);
+}
+
+.preload--fade {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.preload__center {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.preload__line {
+  width: 60px;
+  height: 1px;
+  background: var(--brass);
+  transform-origin: left;
+  animation: preloadLine 1400ms var(--ease-cinematic) infinite alternate;
+}
+
+.preload__line:last-child {
+  transform-origin: right;
+  animation-delay: 200ms;
+}
+
+@keyframes preloadLine {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.preload__brand {
+  color: var(--pure-white);
+  letter-spacing: 0.32em;
+}
+
+.preload__count {
+  position: absolute;
+  bottom: var(--gutter);
+  right: var(--gutter);
+  color: var(--titanium);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+}

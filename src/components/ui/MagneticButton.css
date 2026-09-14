@@ -1,0 +1,92 @@
+.mbtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 28px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: 0;
+  border: 1px solid currentColor;
+  color: var(--pure-white);
+  background: transparent;
+  overflow: hidden;
+  transition: color 400ms var(--ease-cinematic), border-color 400ms var(--ease-cinematic),
+    transform 0ms;
+  will-change: transform;
+}
+
+.mbtn__label,
+.mbtn__arrow {
+  position: relative;
+  z-index: 2;
+  transition: transform 400ms var(--ease-cinematic);
+}
+
+.mbtn__sweep {
+  position: absolute;
+  inset: 0;
+  background: var(--pure-white);
+  transform: translateY(101%);
+  transition: transform 600ms var(--ease-cinematic);
+  z-index: 1;
+}
+
+.mbtn__arrow {
+  display: inline-block;
+  transition: transform 400ms var(--ease-cinematic);
+}
+
+.mbtn:hover {
+  color: var(--ink-black);
+  border-color: var(--pure-white);
+}
+
+.mbtn:hover .mbtn__sweep {
+  transform: translateY(0);
+}
+
+.mbtn:hover .mbtn__arrow {
+  transform: translateX(6px);
+}
+
+/* Variants */
+.mbtn--secondary {
+  color: var(--pure-white);
+  border-color: rgba(245, 244, 240, 0.4);
+}
+
+.mbtn--secondary .mbtn__sweep {
+  background: var(--pure-white);
+}
+
+.mbtn--secondary:hover {
+  color: var(--ink-black);
+  border-color: var(--pure-white);
+}
+
+.mbtn--ghost {
+  color: var(--pure-white);
+  border-color: transparent;
+  padding: 14px 0;
+}
+
+.mbtn--ghost .mbtn__sweep {
+  display: none;
+}
+
+.mbtn--ghost:hover {
+  color: var(--brass);
+  border-color: transparent;
+}
+
+@media (max-width: 600px) {
+  .mbtn {
+    padding: 14px 22px;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+  }
+}

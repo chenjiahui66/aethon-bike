@@ -1,0 +1,29 @@
+.counter-num {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.04em;
+  font-family: var(--font-mono);
+  font-size: inherit;
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--pure-white);
+  font-variant-numeric: tabular-nums;
+}
+
+.counter-num__value {
+  display: inline-block;
+}
+
+.counter-num__suffix {
+  font-family: var(--font-mono);
+  font-size: 0.22em;
+  font-weight: 500;
+  color: var(--titanium);
+  letter-spacing: 0.04em;
+  margin-left: 0.4em;
+  text-transform: uppercase;
+  align-self: center;
+  position: relative;
+  top: -0.4em;
+}

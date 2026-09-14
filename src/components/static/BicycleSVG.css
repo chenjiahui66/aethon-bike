@@ -1,0 +1,52 @@
+.bike-svg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: brightness(var(--bike-intensity, 1));
+}
+
+.bike-svg__svg {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+.bike-svg__part {
+  transition: transform 200ms var(--ease-mechanical);
+  transform-origin: center;
+  will-change: transform;
+}
+
+.bike-svg__ground {
+  filter: blur(2px);
+}
+
+/* When a part is highlighted, the others fade */
+.bike-svg__svg.is-hl-frame .bike-svg__part:not(.bike-svg__part--frame) {
+  opacity: 0.45;
+  transition: opacity 400ms var(--ease-cinematic);
+}
+.bike-svg__svg.is-hl-wheels .bike-svg__part:not(.bike-svg__part--wheels-front):not(.bike-svg__part--wheels-rear) {
+  opacity: 0.45;
+  transition: opacity 400ms var(--ease-cinematic);
+}
+.bike-svg__svg.is-hl-cockpit .bike-svg__part:not(.bike-svg__part--cockpit) {
+  opacity: 0.45;
+  transition: opacity 400ms var(--ease-cinematic);
+}
+.bike-svg__svg.is-hl-saddle .bike-svg__part:not(.bike-svg__part--saddle) {
+  opacity: 0.45;
+  transition: opacity 400ms var(--ease-cinematic);
+}
+.bike-svg__svg.is-hl-drivetrain .bike-svg__part:not(.bike-svg__part--drivetrain) {
+  opacity: 0.45;
+  transition: opacity 400ms var(--ease-cinematic);
+}
+
+.bike-svg__labels {
+  pointer-events: none;
+}

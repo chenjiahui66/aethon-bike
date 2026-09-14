@@ -1,0 +1,59 @@
+/* ==========================================================================
+   AETHON · Design Tokens
+   Based on Brand Creative Direction Document v0.1 — Direction A
+   ========================================================================== */
+
+:root {
+  /* ── Primary ───────────────────────────────────────────────────── */
+  --ink-black: #0a0a0b;
+  --pure-white: #f5f4f0;
+  --graphite: #1c1c1f;
+  --concrete: #3a3a3d;
+
+  /* ── Metals & Neutrals ─────────────────────────────────────────── */
+  --titanium: #8a8a8e;
+  --aluminum: #c4c4c6;
+  --brass: #b8915a;
+  --copper: #a85c3c;
+
+  /* ── Accent (only one) ─────────────────────────────────────────── */
+  --signal-red: #d32b1e;
+
+  /* ── States ────────────────────────────────────────────────────── */
+  --hover-overlay: rgba(245, 244, 240, 0.04);
+  --pressed-overlay: rgba(245, 244, 240, 0.08);
+  --glass-bg: rgba(10, 10, 11, 0.6);
+
+  /* ── Typography ────────────────────────────────────────────────── */
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Modular scale (1.333 ratio) */
+  --type-display-xl: clamp(48px, 13vw, 220px);
+  --type-display-l: clamp(44px, 8vw, 140px);
+  --type-display-m: clamp(36px, 5vw, 88px);
+  --type-h1: 56px;
+  --type-h2: 40px;
+  --type-h3: 28px;
+  --type-body-l: 20px;
+  --type-body: 16px;
+  --type-body-s: 14px;
+  --type-caption: 12px;
+  --type-mono: 14px;
+
+  /* ── Motion ────────────────────────────────────────────────────── */
+  --ease-mechanical: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-cinematic: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-impact: cubic-bezier(0.87, 0, 0.13, 1);
+  --dur-micro: 200ms;
+  --dur-entry: 900ms;
+  --dur-cinematic: 1200ms;
+
+  /* ── Layout ────────────────────────────────────────────────────── */
+  --container-max: 1680px;
+  --gutter: clamp(24px, 4vw, 64px);
+  --nav-height: 72px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}

@@ -1,0 +1,18 @@
+.kinetic {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 0.95;
+  padding-bottom: 0.08em; /* keep descenders from clipping during translateY */
+}
+
+.kt__wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  line-height: inherit;
+}
+
+.kt__part {
+  display: inline-block;
+  will-change: transform, opacity;
+}

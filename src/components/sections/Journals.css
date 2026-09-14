@@ -1,0 +1,129 @@
+.journals {
+  position: relative;
+  padding: 160px 0 120px;
+  background: var(--ink-black);
+}
+
+.journals__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.journals__head {
+  max-width: 920px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.journals__title {
+  color: var(--pure-white);
+  margin: 0;
+}
+
+.journals__sub {
+  color: var(--titanium);
+  font-size: 18px;
+  max-width: 44ch;
+}
+
+.journals__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.journal {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: var(--pure-white);
+  text-decoration: none;
+  position: relative;
+  transition: transform 500ms var(--ease-cinematic);
+}
+
+.journal:hover {
+  transform: translateY(-4px);
+}
+
+.journal__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--graphite);
+  border: 1px solid var(--concrete);
+}
+
+.journal__media-fallback {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(184, 145, 90, 0.08) 0%, transparent 60%),
+    var(--graphite);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 800ms var(--ease-cinematic);
+}
+
+.journal:hover .journal__media-fallback {
+  transform: scale(1.04);
+}
+
+.journal__media-num {
+  color: var(--brass);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  font-size: clamp(80px, 8vw, 140px);
+  opacity: 0.6;
+}
+
+.journal__text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.journal__eyebrow {
+  color: var(--brass);
+}
+
+.journal__title {
+  color: var(--pure-white);
+  font-size: clamp(22px, 2vw, 30px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.journal__excerpt {
+  color: var(--titanium);
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 38ch;
+}
+
+.journal__cta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  color: var(--brass);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: gap 400ms var(--ease-cinematic);
+}
+
+.journal:hover .journal__cta {
+  gap: 14px;
+}
+
+@media (max-width: 900px) {
+  .journals__grid {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+}

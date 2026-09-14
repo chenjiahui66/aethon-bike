@@ -1,0 +1,19 @@
+.app {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.app__main {
+  position: relative;
+  z-index: 1;
+}
+
+.app__main.is-loading {
+  opacity: 0;
+}
+
+.app__main.is-ready {
+  opacity: 1;
+  transition: opacity 700ms var(--ease-cinematic);
+}
