@@ -5,6 +5,8 @@ import {
   useRef,
   useState,
   type CSSProperties,
+  type Ref,
+  createElement,
 } from 'react';
 import { useDeviceCapability } from '../../hooks/useDeviceCapability';
 import './MagneticButton.css';
@@ -18,6 +20,8 @@ type Props = {
   ariaLabel?: string;
   variant?: 'primary' | 'secondary' | 'ghost';
   style?: CSSProperties;
+  /** Only meaningful when `as="button"` (or default) */
+  type?: 'submit' | 'button' | 'reset';
 };
 
 /**
@@ -35,6 +39,7 @@ export function MagneticButton({
   ariaLabel,
   variant = 'primary',
   style,
+  type,
 }: Props) {
   const Tag: ElementType = as ?? (href || to ? 'a' : 'button');
   const ref = useRef<HTMLElement | null>(null);
@@ -42,7 +47,7 @@ export function MagneticButton({
   const cap = useDeviceCapability();
 
   useEffect(() => {
-    if (!cap.isCoarsePointer) return;
+    if (cap.isCoarsePointer) return;
     const el = ref.current;
     if (!el) return;
     const onMove = (e: MouseEvent) => {
@@ -69,23 +74,23 @@ export function MagneticButton({
     };
   }, [cap.isCoarsePointer]);
 
-  const props = {
-    ref: ref as unknown as React.Ref<HTMLElement>,
-    className: `mbtn mbtn--${variant} ${className}`,
-    'aria-label': ariaLabel,
-    style: { ...style, transform },
-    ...(href ? { href } : {}),
-    ...(to ? { to } : {}),
-  };
-
-  return (
-    // @ts-expect-error polymorphic Tag
-    <Tag {...props}>
-      <span className="mbtn__label">{children}</span>
-      <span className="mbtn__sweep" aria-hidden />
-      <span className="mbtn__arrow" aria-hidden>
-        →
-      </span>
-    </Tag>
+  // Use createElement instead of JSX with a dynamic Tag — avoids
+  // the `Type ... is not assignable to IntrinsicAttributes` union-explosion.
+  return createElement(
+    Tag,
+    {
+      ref: ref as Ref<HTMLElement>,
+      className: `mbtn mbtn--${variant} ${className}`,
+      'aria-label': ariaLabel,
+      style: { ...style, transform },
+      ...(href ? { href } : {}),
+      ...(to ? { to } : {}),
+      ...(type ? { type } : {}),
+    },
+    <span className="mbtn__label">{children}</span>,
+    <span className="mbtn__sweep" aria-hidden />,
+    <span className="mbtn__arrow" aria-hidden>
+      →
+    </span>,
   );
 }

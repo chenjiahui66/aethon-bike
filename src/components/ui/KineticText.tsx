@@ -1,10 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, createElement, type Ref } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import './KineticText.css';
 
 gsap.registerPlugin(ScrollTrigger);
+
+/** Whitelist of HTML elements that accept a plain HTMLElement ref.
+ *  (Avoids the SVG/Symbol union-explosion when using keyof JSX.IntrinsicElements.) */
+type KineticTag = 'div' | 'span' | 'p' | 'section' | 'article' | 'h1' | 'h2' | 'h3' | 'h4';
 
 type Props = {
   text: string;
@@ -13,7 +17,7 @@ type Props = {
   stagger?: number;
   /** 'chars' | 'words' | 'lines' */
   splitBy?: 'chars' | 'words' | 'lines';
-  as?: keyof JSX.IntrinsicElements;
+  as?: KineticTag;
 };
 
 /**
@@ -25,7 +29,7 @@ export function KineticText({
   delay = 0,
   stagger = 0.04,
   splitBy = 'words',
-  as: Tag = 'span',
+  as = 'span',
 }: Props) {
   const ref = useRef<HTMLElement | null>(null);
   const reduced = useReducedMotion();
@@ -67,15 +71,18 @@ export function KineticText({
     parts = text.split('\n');
   }
 
-  // @ts-expect-error polymorphic
-  return (
-    <Tag ref={ref} className={`kinetic ${className}`} aria-label={text}>
-      {parts.map((p, i) => (
-        <span key={i} className="kt__wrap" aria-hidden>
-          <span className="kt__part">{p === ' ' ? '\u00A0' : p}</span>
-          {splitBy === 'words' && i < parts.length - 1 ? '\u00A0' : ''}
-        </span>
-      ))}
-    </Tag>
+  return createElement(
+    as,
+    {
+      ref: ref as Ref<HTMLElement>,
+      className: `kinetic ${className}`,
+      'aria-label': text,
+    },
+    parts.map((p, i) => (
+      <span key={i} className="kt__wrap" aria-hidden>
+        <span className="kt__part">{p === ' ' ? '\u00A0' : p}</span>
+        {splitBy === 'words' && i < parts.length - 1 ? '\u00A0' : ''}
+      </span>
+    )),
   );
 }

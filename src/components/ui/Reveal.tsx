@@ -1,16 +1,17 @@
-import { type ReactNode, useEffect, useRef } from 'react';
+import { type ReactNode, useEffect, useRef, createElement, type Ref } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
-gsap.registerPlugin(ScrollTrigger);
+/** Whitelist — see KineticText for rationale. */
+type RevealTag = 'div' | 'section' | 'article' | 'header' | 'footer' | 'main' | 'aside' | 'ul' | 'ol';
 
 type Props = {
   children: ReactNode;
   className?: string;
   delay?: number;
   y?: number;
-  as?: keyof JSX.IntrinsicElements;
+  as?: RevealTag;
   stagger?: number;
 };
 
@@ -23,7 +24,7 @@ export function Reveal({
   className = '',
   delay = 0,
   y = 40,
-  as: Tag = 'div',
+  as = 'div',
   stagger = 0,
 }: Props) {
   const ref = useRef<HTMLElement | null>(null);
@@ -57,10 +58,12 @@ export function Reveal({
     return () => trigger.kill();
   }, [delay, y, stagger, reduced]);
 
-  // @ts-expect-error generic ref
-  return (
-    <Tag ref={ref} className={className}>
-      {children}
-    </Tag>
+  return createElement(
+    as,
+    {
+      ref: ref as Ref<HTMLElement>,
+      className,
+    },
+    children,
   );
 }
